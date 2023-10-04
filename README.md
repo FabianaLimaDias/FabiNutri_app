@@ -1,7 +1,7 @@
 <h1 align = "center"> # 📁 FabiNutri_app </h1>h1>
 Plataforma (App e site) voltado ao publico que deseja melhorar sua alimentação
 
-![image](https://github.com/FabianaLimaDias/FabiNutri_app/assets/129968421/16e21cc8-3981-444a-8664-d697d17b3fa7)
+<img src = "C:\Users\fabiana.carvalho\Desktop\DEV\Projeto Mentoria\logo.png">
 
 
 CONCEPÇÃO SOFTWARE
