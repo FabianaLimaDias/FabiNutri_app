@@ -1,4 +1,4 @@
-<h1 align = "center"> ## 📁 FabiNutri_app </h1>
+<h1 align = "center"> 📁 FabiNutri_app </h1>
 Plataforma (App e site) voltado ao publico que deseja melhorar sua alimentação
 
 
