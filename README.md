@@ -1,7 +1,7 @@
 <h1 align = "center"> # 📁 FabiNutri_app </h1>
 Plataforma (App e site) voltado ao publico que deseja melhorar sua alimentação
 
-<img src = "C:\Users\fabiana.carvalho\Desktop\DEV\Projeto Mentoria\logo.png">
+<img src = "/DEV/Projeto Mentoria/logo.png">
 
 
 CONCEPÇÃO SOFTWARE
