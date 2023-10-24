@@ -37,7 +37,8 @@ FUNCIONALIDADE:
 
 - MONETIZAÇÃO:
  - Anúncios pagos que apareceram como pop-ups
- - Vendas de produtos saudáveis e refeições fitness 
+ - Vendas de produtos saudáveis e refeições fitness
+ - Vebda de planos individuais e mensal para nutricionistas usarem a plataforma
 
 
 
