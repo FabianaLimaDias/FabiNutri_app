@@ -1,0 +1,29 @@
+FUNCIONALIDADES
+
+Tela Cadastro de Usuario:
+Descrição: Como o cliente/ usuario vai realizar o acesso:
+- google
+- facebook
+- cadastro manual
+- cod.cliente ou cod.familia
+Requisitos ou critéiros de aceite: email valido/cod cliente ou cod.familia/ acesso facebook apos informar a senha/ no cadastro manual " obrigatório informar CPF e email"
+
+Tela apos a validação APP/Site:
+Descrição: Tela de apresentaçao com opções visiveis ao usuario:
+ - Meta da semana
+ - Peso
+ - Dietas
+ - opção de editar perfil
+ - menu de navegação
+
+Tela dieta:
+Descrição: Tela aonde aparecerá as dietas semanais e opções de dietas
+- dieta da semana
+- informando a caloria que sera adquirida com essa dieta
+- foto de opções para refeições saudaveis
+- indicativo com opção de compra dentro do app para alimentação saudavel
+
+Popus ( anuncios pagos)
+
+
+ 
