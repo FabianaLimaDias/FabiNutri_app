@@ -1,0 +1,91 @@
+CREATE TABLE mensagem(
+	idMensagem int PRIMARY KEY NOT NULL,
+	codEmpresa int NOT NULL,
+	chave varchar (20),
+	mensagemDescricao varchar (20),
+
+);
+
+CREATE TABLE parametros_Acesso(
+	idAcesso int PRIMARY KEY NOT NULL,
+	codEmpresa int NOT NULL,
+	numDiasSenhaExpira numeric (10)NOT NULL,
+	tentativasBloqueio numeric (5)NOT NULL,
+	tempoBloqueio datetime NOT NULL,
+	tempoDesbloqueio datetime,
+	numHistoricoUltimaSenha datetime NOT NULL,
+	bloqueioInatividade datetime NOT NULL,
+	tamanhoMinSenha varchar(9)NOT NULL,
+	tamanhoMaxSenha varchar (9)NOT NULL,
+	qtdeCaractereEspeciais varchar (1) NOT NULL,
+	qtdeLetrasMaiusculas varchar (1) NOT NULL,
+	qtdeLetrasMinusculas varchar (6) NOT NULL,
+	qtdeNumero varchar(1)NOT NULL,
+
+);
+
+CREATE TABLE empresa(
+	codEmpresa int PRIMARY KEY NOT NULL,
+	IdEmpresa varchar (10) NOT NULL,
+	razaoSocial varchar (45)NOT NULL,
+	nomeAbreviacaoEmpresa varchar (20) NOT NULL,
+	dataCadastroEmpresa datetime NOT NULL,
+);
+
+
+CREATE TABLE usuario(
+	idUsuario char PRIMARY KEY NOT NULL,
+	codEmpresa int NOT NULL,
+	idTipoAcesso int NOT NULL,
+	usuario int NOT NULL,
+	nomeUsuario varchar (20) NOT NULL,
+	emailUsuario varchar (45) NOT NULL,
+	codPerfil varchar (2) NOT NULL,
+	tipoUsuario int NOT NULL,
+	senhaAtual varchar (9) NOT NULL,
+	senhaTemporaria varchar (6) NOT NULL,
+	flagAlterarSenhaLogin BIT NOT NULL,
+	statusUsuario int NOT NULL,
+	bloqueioTentativas varchar (5),
+	dataBloqueioSenha datetime NOT NULL,
+	dataUltimoAcesso datetime NOT NULL,
+	dataAlteracaoSenha datetime NOT NULL,
+
+);
+
+
+CREATE TABLE tipo_acesso(
+	idTipoAcesso int PRIMARY KEY NOT NULL,
+	nomeTipoAcesso varchar (20) NOT NULL,
+	descricaoAcesso varchar (20) NOT NULL,
+	codigoTipoAcesso numeric (2) NOT NULL,
+
+);
+
+CREATE TABLE grupo_permissao(
+	idGrupoPermissao int NOT NULL,
+	codGrupoPermissao numeric (2) PRIMARY KEY NOT NULL,
+	descricaoPermissao varchar (20) NOT NULL,
+	nomeGrupoPermissao varchar (10) NOT NULL,
+	codEmpresa int NOT NULL,
+);
+
+
+CREATE TABLE permissao(
+	idPermissao int NOT NULL,
+	codPermissao numeric(2) PRIMARY KEY NOT NULL,
+	descricaoPermissao varchar (20) NOT NULL,
+	funcionalidade varchar (25),
+	codEmpresa int NOT NULL,
+	codGrupoPermissao numeric (2) NOT NULL);
+
+
+
+CREATE TABLE perfil(
+	idPerfil int NOT NULL,
+	codigoPerfil varchar (2) PRIMARY KEY NOT NULL,
+	descricaoPerfil varchar (25) NOT NULL,
+	codEmpresa int NOT NULL,
+	codPermissao numeric (2) NOT NULL
+);
+
