@@ -9,12 +9,12 @@
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='empresa_tb')
 BEGIN
 	CREATE TABLE empresa_tb(
-		idEmpresa int PRIMARY KEY IDENTITY (1,1),
-		codEmpresa varchar (10) NOT NULL ,
-		razaoSocial varchar (45)NOT NULL,
-		nomeAbreviacaoEmpresa varchar (20),
-		dataCadastroEmpresa datetime NOT NULL,
-		usuarioCadastro varchar (100) NOT NULL,
+		idEmpresa INT PRIMARY KEY IDENTITY (1,1),
+		codEmpresa VARCHAR(10) NOT NULL ,
+		razaoSocial VARCHAR(45)NOT NULL,
+		nomeAbreviacaoEmpresa VARCHAR(20),
+		dataCadastroEmpresa DATETIME NOT NULL,
+		usuarioCadastro VARCHAR(100) NOT NULL,
 		
 	);
 END
@@ -22,32 +22,32 @@ END
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='mensagem_tb')
 BEGIN
 		CREATE TABLE mensagem_tb (
-		idMensagem int PRIMARY KEY IDENTITY (1, 1),
+		idMensagem INT PRIMARY KEY IDENTITY (1, 1),
 		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb (idEmpresa) ,
-		chave VARCHAR (20) NOT NULL,
-		mensagemDescricao VARCHAR (4000) NOT NULL,
+		chave VARCHAR(20) NOT NULL,
+		mensagemDescricao VARCHAR(4000) NOT NULL,
 		);
 END
 
 
 
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = 'parametros_acesso_tb')
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = 'parametro_acesso_tb')
 BEGIN
 		CREATE TABLE parametro_acesso_tb(
 		idAcesso INT PRIMARY KEY IDENTITY (1,1),
-		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb (idEmpresa),
-		numDiasSenhaExpira NUMERIC (10) NOT NULL,
-		tentativasBloqueio NUMERIC (5) NOT NULL,
+		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb(idEmpresa),
+		numDiasSenhaExpira INT NOT NULL,
+		tentativasBloqueio INT NOT NULL,
 		tempoBloqueio DATETIME2 NOT NULL,
 		tempoDesbloqueio DATETIME2 NOT NULL,
 		numHistoricoUltimaSenha DATETIME2 NOT NULL,
 		bloqueioInatividade DATETIME2 NOT NULL,
-		tamanhoMinSenha VARCHAR (9)NOT NULL,
-		tamanhoMaxSenha VARCHAR (9)NOT NULL,
-		qtdeCaractereEspeciais VARCHAR (1) NOT NULL,
-		qtdeLetrasMaiusculas VARCHAR (1) NOT NULL,
-		qtdeLetrasMinusculas VARCHAR (6) NOT NULL,
-		qtdeNumero VARCHAR(1)NOT NULL,
+		tamanhoMinSenha INT NOT NULL,
+		tamanhoMaxSenha INT NOT NULL,
+		qtdeCaractereEspeciais INT NOT NULL,
+		qtdeLetrasMaiusculas INT NOT NULL,
+		qtdeLetrasMinusculas INT NOT NULL,
+		qtdeNumero INT NOT NULL,
 
 	);
 
@@ -58,9 +58,9 @@ BEGIN
 
 	CREATE TABLE tipo_acesso_tb(
 		idTipoAcesso INT PRIMARY KEY IDENTITY (1,1),
-		nomeTipoAcesso VARCHAR (45) NOT NULL,
-		descricaoAcesso VARCHAR (1000) NOT NULL,
-		codigoTipoAcesso VARCHAR (10) NOT NULL,
+		nomeTipoAcesso VARCHAR(45) NOT NULL,
+		descricaoAcesso VARCHAR(1000) NOT NULL,
+		codigoTipoAcesso VARCHAR(10) NOT NULL,
 
 	);
 END
@@ -70,9 +70,9 @@ BEGIN
 	CREATE TABLE grupo_permissao_tb(
 		idGrupoPermissao INT PRIMARY KEY IDENTITY (1,1),
 		codGrupoPermissao VARCHAR(10) NOT NULL,
-		descricaoPermissao VARCHAR (100) NOT NULL,
-		nomeGrupoPermissao VARCHAR (45) NOT NULL,
-		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb (idEmpresa),
+		descricaoPermissao VARCHAR(100) NOT NULL,
+		nomeGrupoPermissao VARCHAR(45) NOT NULL,
+		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb(idEmpresa),
 	);
 END
 
@@ -82,11 +82,11 @@ BEGIN
 
 	CREATE TABLE permissao_tb(
 		idPermissao INT PRIMARY KEY IDENTITY (1,1),
-		codPermissao VARCHAR (10) NOT NULL,
-		descricaoPermissao VARCHAR (100) NOT NULL,
-		funcionalidade VARCHAR (200) NOT NULL,
-		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb (idEmpresa),
-		idGrupoPermissao INT FOREIGN KEY REFERENCES grupo_permissao_tb (idGrupoPermissao),
+		codPermissao VARCHAR(10) NOT NULL,
+		descricaoPermissao VARCHAR(100) NOT NULL,
+		funcionalidade VARCHAR(200) NOT NULL,
+		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb(idEmpresa),
+		idGrupoPermissao INT FOREIGN KEY REFERENCES grupo_permissao_tb(idGrupoPermissao),
 		);
 END
 
@@ -94,10 +94,10 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE NAME = 'perfil_tb')
 BEGIN
 	CREATE TABLE perfil_tb(
 		idPerfil INT PRIMARY KEY IDENTITY (1,1),
-		codigoPerfil VARCHAR (10) NOT NULL,
+		codigoPerfil VARCHAR(10) NOT NULL,
 		descricaoPerfil VARCHAR(100) NOT NULL,
-		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb (idEmpresa),
-		idPermissao INT FOREIGN KEY REFERENCES permissao_tb (idPermissao),
+		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb(idEmpresa),
+		idPermissao INT FOREIGN KEY REFERENCES permissao_tb(idPermissao),
 	);
 END
 
@@ -105,18 +105,18 @@ IF NOT EXISTS ( SELECT * FROM sysobjects WHERE NAME = 'usuario_tb')
 BEGIN
 	 CREATE TABLE usuario_tb(
 		idUsuario INT PRIMARY KEY IDENTITY (1,1),
-		idEmpresa int FOREIGN KEY REFERENCES empresa_tb (idEmpresa),
-		idTipoAcesso INT FOREIGN KEY REFERENCES tipo_acesso_tb (idTipoAcesso) ,
+		idEmpresa int FOREIGN KEY REFERENCES empresa_tb(idEmpresa),
+		idTipoAcesso INT FOREIGN KEY REFERENCES tipo_acesso_tb(idTipoAcesso) ,
 		usuario INT NOT NULL,
-		nomeUsuario VARCHAR (45) NOT NULL,
-		emailUsuario VARCHAR (45) NOT NULL,
+		nomeUsuario VARCHAR(45) NOT NULL,
+		emailUsuario VARCHAR(45) NOT NULL,
 		idPerfil INT FOREIGN KEY REFERENCES perfil_tb ( idPerfil),
 		tipoUsuario INT NOT NULL,
-		senhaAtual VARCHAR (9) NOT NULL,
-		senhaTemporaria varchar (6) NOT NULL,
+		senhaAtual VARCHAR(100) NOT NULL,
+		senhaTemporaria varchar(100) NOT NULL,
 		flagAlterarSenhaLogin BIT NOT NULL,
 		statusUsuario INT NOT NULL,
-		bloqueioTentativas VARCHAR (5),
+		bloqueioTentativas INT NOT NULL,
 		dataBloqueioSenha DATETIME2 NOT NULL,
 		dataUltimoAcesso DATETIME2 NOT NULL,
 		dataAlteracaoSenha DATETIME2 NOT NULL,
@@ -129,8 +129,8 @@ BEGIN
 	CREATE TABLE grupo_permissao_tb(
 		idGrupoPermissao INT PRIMARY KEY IDENTITY (1,1),
 		codGrupoPermissao VARCHAR(10) NOT NULL,
-		descricaoPermissao VARCHAR (100) NOT NULL,
-		nomeGrupoPermissao VARCHAR (45) NOT NULL,
+		descricaoPermissao VARCHAR(100) NOT NULL,
+		nomeGrupoPermissao VARCHAR(45) NOT NULL,
 		idEmpresa INT FOREIGN KEY REFERENCES empresa_tb (idEmpresa),
 	);
 END
