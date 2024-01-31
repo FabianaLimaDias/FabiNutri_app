@@ -12,42 +12,49 @@ namespace RegraNegocio
 {
     public class UsuarioRegraNegocio /// Regra de Negocio - comunica com Front e Acesso de Dados
     {
-        private BancoSqlServer bancoSqlServer;
-
+        private UsuarioAcessoDados UsuarioAcessoDados { get; set; } 
         public UsuarioRegraNegocio()
         {
-            bancoSqlServer =  new BancoSqlServer();
-
+            this.UsuarioAcessoDados  = new UsuarioAcessoDados();
         }
         public List<UsuarioModel> ListarUsuarios()
-        {
-           
-            List<UsuarioModel> listaUsuarios = new List<UsuarioModel>();
-            
-           
-                var consultaSQL = "Select * from usuario_tb";
-                DataTable dadosTabela = bancoSqlServer.ConsultarBancoDeDados(consultaSQL);
-
-                foreach (DataRow row in dadosTabela.Rows)
-                {
-                    UsuarioModel usuario = new UsuarioModel
-                    {
-                       
-
-                        IdUsuario = Convert.ToInt32(row["idUsuario"]),
-                        Usuario = row["usuario"].ToString(),
-                        DataCadastro = Convert.ToDateTime(row["dataCadastro"])
-                    };
-
-                    listaUsuarios.Add(usuario);
-                   
-                  }
-                
-
-            return listaUsuarios;
-
+        {           
+            return this.UsuarioAcessoDados.ListarUsuarios();
         }
 
-      //  public 
+        public UsuarioModel BuscarUsuario(int idUsuario)
+        {
+            return this.UsuarioAcessoDados.BuscarUsuario(idUsuario);
+        }
+
+        public UsuarioModel ExcluirUsuario(int idUsuario)
+        {
+            return UsuarioAcessoDados.ExcluirUsuario(idUsuario);
+        }
+
+        public UsuarioModel CadastrarUsuario(UsuarioModel novoUsuario)
+        {
+            try
+            {
+                return UsuarioAcessoDados.CadastrarUsuario(novoUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public UsuarioModel EditarCadastro (int idUsuario, string senhaAtual)//nao ta funcionando
+        {
+            try
+            {
+                return UsuarioAcessoDados.EditarCadastro(idUsuario, senhaAtual);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
+        }
     }
 }

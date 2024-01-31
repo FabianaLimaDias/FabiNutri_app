@@ -29,7 +29,7 @@ namespace Sigeus.DataSet
             }
         }
 
-       public void IniciarConexaoBanco()
+       private void IniciarConexaoBanco()
         {//Abre a conexão com o Banco de Dados , senão estiver aberto !=( diferente de igual)
             try
             {
@@ -44,7 +44,7 @@ namespace Sigeus.DataSet
             }
         }
 
-        public void EncerrarConexaoBanco()
+        private void EncerrarConexaoBanco()
         {//fecha se estiver aberto
             if (ConexaoBancoDeDados.State != ConnectionState.Closed)
             {
@@ -53,14 +53,14 @@ namespace Sigeus.DataSet
         }
         //Criado um metodo de Consulta
 
-        public DataTable ConsultarBancoDeDados (string SQL) 
+        public DataTable ConsultarBancoDeDados (string sql) 
         {
             DataTable dadosTabela = new DataTable();//DataTable estrutura tabular em memoria que pdoe armazenar daods em linhas e colunas, semelhantes a uma tabela de banco de dados
 
             try// inicia um bloco, executado quando envolve um codigo que pode lançar execão, se ocorrer dentro do bloco e sera tranferido para catch
             {
-                IniciarConexaoBanco();
-                var comando = new SqlCommand(SQL, ConexaoBancoDeDados);//criada variavel comando responsavel por executar as consultas e instanciamos SlqCommando e passamos o parametro SQL e conexaobanco 
+                this.IniciarConexaoBanco();
+                var comando = new SqlCommand(sql, ConexaoBancoDeDados);//criada variavel comando responsavel por executar as consultas e instanciamos SlqCommando e passamos o parametro SQL e conexaobanco 
                 comando.CommandTimeout = 0;//define o tempo de conexao como 0, ou seja, nao ha limite de tempo
                 var retornaDados = comando.ExecuteReader();//criada variavel para retornar os dados da consulta feita pelo comando realizado
                 dadosTabela.Load(retornaDados);//guardar na tabela retonada os dados
@@ -72,12 +72,12 @@ namespace Sigeus.DataSet
             }
             finally
             {
-                EncerrarConexaoBanco();//encerrar conexao banco de dados
+                this.EncerrarConexaoBanco();//encerrar conexao banco de dados
             }
             return dadosTabela;//retornar os dados da tabela consultada
         }
 
-        public string AlterarBancoDeDados (string SQL)
+        public string ExecutarComandoBancoDeDados (string SQL)
         {
             //Comando que não retorna dados, usamos o SQLComando,
             // funciona também para Update/Delete e Insert
