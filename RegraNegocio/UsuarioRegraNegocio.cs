@@ -44,7 +44,7 @@ namespace RegraNegocio
             }
         }
 
-        public UsuarioModel EditarCadastro (int idUsuario, string senhaAtual)//nao ta funcionando
+        public UsuarioModel EditarCadastro (int idUsuario, string senhaAtual)
         {
             try
             {

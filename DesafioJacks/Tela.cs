@@ -49,5 +49,12 @@ namespace Segeus.Interface /// FRONT .. comunica com o usuario e a Regra de Nego
         {
             Console.Clear();
         }
+
+        public string AdicionarEspaco(string valor, int quantidadeCaracteres)
+        {
+            
+            return valor.PadRight(quantidadeCaracteres, ' ');  
+            
+        }
     }
 }

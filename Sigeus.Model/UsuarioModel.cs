@@ -12,10 +12,12 @@
         public string EmailUsuario { get; set; }
         public string Perfil { get; set; }
 
+        public int IdPerfil { get; set; }
+
         public int TipoUsuario { get; set; }
 
         public string SenhaAtual {get; set;}
-       public string StatusUsuario { get; set;}
+        public string StatusUsuario { get; set;}
 
         public DateTime DataUltimoAcesso { get; set; }
         public DateTime DataAlteracaoSenha { get; set; }
